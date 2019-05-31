@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta charset="utf-8" />
+		<title>登录页面</title>
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+			function login(){			
+				var name = $('#username').val();
+				var pwd = $('#pwd').val();
+				alert("user:"+name+"  pwd:"+pwd);
+				var rootPath = "/TestDoc";
+				$.ajax({
+					url:rootPath+'/user/login.do?username='+encodeURI(name)+"&pwd="+encodeURI(pwd),
+					success:function(data){
+						location.href="page/success.html";
+					},
+					error:function(data){
+						alert(JSON.stringify(data));
+					}
+				});
+			}
+		</script>
+	</head>
+  
+  <body bgcolor="#888888">
+		<div style="width: 400;height: 60px;margin-left: 680px;margin-top: 200px;font-size:26px;color:orange;">SSM登录模块</div>
+			
+		<div style="position: absolute;width: 400px;height: 260px;background-color:#666666;left: 50%;top: 50%;margin-left: -200px;margin-top: -130px;" >
+			<div>
+				<input name="username" id="username" type="text" placeholder="用户名" style="width: 260px;height: 30px;margin-top: 55px;margin-left: 70px;text-align: center;"/>
+			</div>
+			<div>
+				<input name="pwd" id="pwd" type="text" placeholder="密码" style="width: 260px;height: 30px;margin-top: 35px;margin-left: 70px;text-align: center;"/>
+			</div>
+			<div>
+				<button onclick="login()" style="width: 80px;height: 35px;margin-top: 30px;margin-left: 160px;">登录</button>
+			</div>
+		</div>
+	</body>
+</html>
